@@ -148,6 +148,7 @@ public class ARIAUtil {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private static String makeMasterKey(String str) {
 		String appendStr = "Naravision KebiPortal Solution";
 		StringBuffer buf = new StringBuffer();

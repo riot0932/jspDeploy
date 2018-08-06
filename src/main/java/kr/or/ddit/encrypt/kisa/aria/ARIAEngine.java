@@ -34,6 +34,7 @@ class ARIAEngine {
 
 	private String publicKey = "CREDIF_MASTERKEY";
 
+	@SuppressWarnings("unused")
 	private String privateKey = "";
 
 
