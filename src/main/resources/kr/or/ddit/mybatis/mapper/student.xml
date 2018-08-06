@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="student">
+	
+	<select id="selectAllStudents" resultType="StudentVo">
+		select * from student2
+	</select>
+	
+	<select id="getStudent" parameterType="Integer" resultType="StudentVo" >
+		select * from Student2 where id = #{id}
+	</select>
+	
+	<select id="getStudentVo" parameterType="Integer" resultType="StudentVo" >
+		select * from Student2 where id = #{id}
+	</select>
+	
+	<!-- 학생 정보 페이징 조회 -->
+	<select id="getStudentPageList" parameterType="map" resultType="StudentVo">
+		SELECT *
+		 FROM
+			(SELECT a.*, ROWNUM rn
+			 FROM 
+			 	(SELECT * 
+					FROM  student2
+				ORDER BY name)a)
+		WHERE rn BETWEEN(#{page}-1)*#{pageSize}+ 1 AND #{page}*#{pageSize}
+	</select>
+	
+	<!-- 전체 건수 조회 -->
+	<select id="getStudentTotCnt" resultType="Integer">
+		select count (*) from student2
+	</select>
+	
+	<!-- 학생 정보 업데이트 -->
+	<update id="studentUpdate" parameterType="studentVo">
+	UPDATE student2 SET pic=#{pic}, 
+						picpath=#{picpath},
+						PICNAME=#{picname},
+						ADDR1=#{addr1},
+						ADDR2=#{addr2},
+						ZIPCD=#{zipcd},
+						NAME=#{name}
+	WHERE id=#{id}
+	</update>
+	
+
+
+</mapper> 
